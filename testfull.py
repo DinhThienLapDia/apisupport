@@ -15,7 +15,7 @@ db = client.testdatabase
 @app.route('/newticket', methods=["POST"])
 def newticket():
     try:
-        data = request.form["user"]
+        data = request.form["user"].encode("utf-8")
         print data
         jsondata = json.loads(data)
         print jsondata
@@ -48,6 +48,7 @@ def listticket():
 @app.route('/updateticket', methods=["POST"])
 def updateticket():
     data = request.form["ticket"]
+    print data
     jsondata = json.loads(data)
     print jsondata
     ticketid = ObjectId(jsondata["_id"])
